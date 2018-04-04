@@ -1,7 +1,7 @@
-const x = 'XXX';
-const o = 'OOO';
+const playerX = 'XXX';
+const playerO = 'OOO';
 
-function createGame() {
+function generateBoardWithContent() {
   let xo = 'XXXXXOOOOO';
   let arrGame = [
                   [],
@@ -19,52 +19,35 @@ function createGame() {
 }
 
 function ticTacToe(game) {
-  let col = checkCol(game);
-  let row = checkRow(game);
-  let diag = checkDiag(game);
-  let checkedGame = [col, row, diag];
   console.log(game);
-  for (var i = 0; i < checkedGame.length; i++) {
-    if (checkedGame[i] !== false) {
-      return checkedGame[i];
-    }
+  let colRow = checkColRow(game);
+  let diag = checkDiag(game);
+  if (colRow !== false) {
+    return colRow;
+  } else if (diag !== false) {
+    return diag;
   }
   return 'DRAW';
 }
 
-function checkCol(game) {
+function checkColRow(game) {
   //col
   for (var i = 0; i < game.length; i++) {
-    let temp = '';
-    //row
+    let col = '';
+    let row = '';
     for (var j = 0; j < game.length; j++) {
-      temp += game[j][i];
+      col += game[j][i]; //col
+      row += game[i][j]; //row
     }
-    if (temp === x) {
+    if (col === playerX || row === playerX) {
       return `X WIN`;
-    } else if (temp === o) {
+    } else if (col === playerO || row === playerO) {
       return `O WIN`;
     }
   }
   return false;
 }
 
-function checkRow(game) {
-  //row
-  for (var i = 0; i < game.length; i++) {
-    let temp = '';
-    //col
-    for (var j = 0; j < game.length; j++) {
-      temp += game[i][j];
-    }
-    if (temp === x) {
-      return `X WIN`;
-    } else if (temp === o) {
-      return `O WIN`;
-    }
-  }
-  return false;
-}
 
 function checkDiag(game) {
   //first diagonal
@@ -81,12 +64,13 @@ function checkDiag(game) {
     }
   }
 
-  if (dia1 === x || dia2 === x) {
+  if (dia1 === playerX || dia2 === playerX) {
     return `X WIN`;
-  } else if (dia1 === o || dia2 === o) {
+  } else if (dia1 === playerO || dia2 === playerO) {
     return `O WIN`;
   }
   return false;
 }
 
-console.log(ticTacToe(createGame()));
+var board = generateBoardWithContent()
+console.log(ticTacToe(board));
