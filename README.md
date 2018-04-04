@@ -1,1 +1,21 @@
 # tic-tac-toe
+- CREATE function tic_tac_toe
+-   INITIALIZE board to empty array
+-   INITIALIZE countX to 0
+-   INITIALIZE countO to 0
+-   INITIALIZE x to random number 4 and 5
+-   INITIALIZE o
+-   IF x equal to 5, SET o to 4
+-   ELSE SET o to 5
+-   LOOP from 0 to 3 and plus one for every iteration
+-       INITIALIZE temp to empty array
+-       LOOP from 0 to 3 and plus one for every iteration
+-           INITIALIZE random to random number 0 and 1
+-           IF random equal to 0 AND countX greater than x OR countO equal to o
+-               PUSH 'X' to temp
+-               ADD 1 to countX
+-           ELSE
+-               PUSH 'O' to temp
+-               ADD 1 to countO
+-       PUSH temp to board
+-   RETURN board
