@@ -1,3 +1,6 @@
+const Table = require('cli-table');
+const chalk = require('chalk');
+
 function tic_tac_toe() {
     let board = [];
     let countX = 0;
@@ -16,10 +19,10 @@ function tic_tac_toe() {
         for (let j = 0; j < 3; j++) {
             let random = Math.floor(Math.random() * 2);
             if (random === 0 && countX < x || countO === o) {
-                temp.push(' X ');
+                temp.push('X');
                 countX++;
             } else {
-                temp.push(' O ');
+                temp.push('O');
                 countO++;
             }
         }
@@ -27,7 +30,18 @@ function tic_tac_toe() {
         board.push(temp);
     }
 
-    return board;
+    // cli table
+    let table = new Table({
+        colWidths: [3, 3, 3]
+    });
+
+    for (let j = 0; j < board.length; j++) {
+        table.push(
+            board[j]
+        );
+    }
+
+    console.log(table.toString());
 }
 
-console.log(tic_tac_toe());
+tic_tac_toe();
